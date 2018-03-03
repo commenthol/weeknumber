@@ -1,0 +1,60 @@
+{
+  "name": "weeknumber",
+  "version": "1.0.0-0",
+  "description": "week number systems for Gregorian year according to ISO-8601 or starting on sundays, saturdays",
+  "keywords": [
+    "day",
+    "iso-8601",
+    "iso8601",
+    "monday",
+    "number",
+    "saturday",
+    "sunday",
+    "week"
+  ],
+  "homepage": "https://github.com/commenthol/weeknumber#readme",
+  "bugs": {
+    "url": "https://github.com/commenthol/weeknumber/issues"
+  },
+  "license": "Unlicense",
+  "author": "Commenthol <commenthol@gmail.com>",
+  "main": "lib",
+  "module": "src",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/commenthol/weeknumber.git"
+  },
+  "scripts": {
+    "all": "npm run lint && npm run build && npm test",
+    "build": "babel -d lib src",
+    "clean": "rimraf lib node_modules coverage .nyc_output",
+    "coverage": "nyc -r html -r text npm test",
+    "lint": "eslint '**/*.js'",
+    "prepare": "rimraf lib && npm run all",
+    "test": "mocha"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "eslint": "^4.16.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^5.0.0",
+    "nyc": "^11.4.1",
+    "rimraf": "^2.6.2"
+  }
+}
