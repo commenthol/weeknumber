@@ -1,6 +1,6 @@
 {
   "name": "weeknumber",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "week number systems for Gregorian year according to ISO-8601 or starting on sundays, saturdays",
   "keywords": [
     "day",
