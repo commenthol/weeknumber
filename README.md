@@ -22,16 +22,16 @@ Get day of year in Gregorian year
 
 **Parameters**
 
-| parameter | type | description    |
-| --------- | ---- | -------------- |
-| `[date]`  | Date | _optional:_ |
+| parameter | type | description |
+| --------- | ---- | ----------- |
+| `[date]`  | Date | _optional:_ local date - its recommended to use noon to avoid issues for days switching to DST |
 
 **Example**
 
 ```js
-dayOfYear(new Date(2017, 11, 31))
+dayOfYear(new Date(2017, 11, 31, 12))
 //> 365
-dayOfYear(new Date(2018, 0, 1))
+dayOfYear(new Date(2018, 0, 1, 12))
 //> 1
 ```
 
@@ -48,16 +48,16 @@ Used by most European countries, most of Asia and Oceania.
 
 **Parameters**
 
-| parameter | type | description                                      |
-| --------- | ---- | ------------------------------------------------ |
-| `[date]`  | Date | _optional:_ date to calculate week number from   |
+| parameter | type | description |
+| --------- | ---- | ----------- |
+| `[date]`  | Date | _optional:_ local date - its recommended to use noon to avoid issues for days switching to DST |
 
 **Example**
 
 ```js
-weekNumber(new Date(2016, 0, 3)) // Sun
+weekNumber(new Date(2016, 0, 3, 12)) // Sun
 //> 53
-weekNumber(new Date(2016, 0, 4)) // Mon
+weekNumber(new Date(2016, 0, 4, 12)) // Mon
 //> 1
 ```
 
@@ -74,16 +74,16 @@ Used in Canada, United States, India, Japan, Taiwan, Hong Kong, Macau, Israel, S
 
 **Parameters**
 
-| parameter | type | description                                      |
-| --------- | ---- | ------------------------------------------------ |
-| `[date]`  | Date | _optional:_ date to calculate week number from   |
+| parameter | type | description |
+| --------- | ---- | ----------- |
+| `[date]`  | Date | _optional:_ local date - its recommended to use noon to avoid issues for days switching to DST |
 
 **Example**
 
 ```js
-weekNumberSun(new Date(2016, 0, 2)) // Sat
+weekNumberSun(new Date(2016, 0, 2, 12)) // Sat
 //> 52
-weekNumberSun(new Date(2016, 0, 3)) // Sun
+weekNumberSun(new Date(2016, 0, 3, 12)) // Sun
 //> 1
 ```
 
@@ -100,16 +100,16 @@ Used in most of the Middle East.
 
 **Parameters**
 
-| parameter | type | description                                      |
-| --------- | ---- | ------------------------------------------------ |
-| `[date]`  | Date | _optional:_ date to calculate week number from   |
+| parameter | type | description |
+| --------- | ---- | ----------- |
+| `[date]`  | Date | _optional:_ local date - its recommended to use noon to avoid issues for days switching to DST |
 
 **Example**
 
 ```js
-weekNumberSat(new Date(2016, 0, 1)) // Fri
+weekNumberSat(new Date(2016, 0, 1, 12)) // Fri
 //> 52
-weekNumberSat(new Date(2016, 0, 2)) // Sat
+weekNumberSat(new Date(2016, 0, 2, 12)) // Sat
 //> 1
 ```
 

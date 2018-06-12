@@ -29,13 +29,14 @@
     "url": "git+https://github.com/commenthol/weeknumber.git"
   },
   "scripts": {
-    "all": "npm run lint && npm run build && npm test",
+    "all": "npm run lint && npm run build && npm test && npm run test:tz",
     "build": "babel -d lib src",
     "clean": "rimraf lib node_modules coverage .nyc_output",
     "coverage": "nyc -r html -r text npm test",
     "lint": "eslint '**/*.js'",
     "prepare": "rimraf lib && npm run all",
-    "test": "mocha"
+    "test": "mocha",
+    "test:tz": "TZ=Europe/Brussels mocha"
   },
   "babel": {
     "presets": [
@@ -54,7 +55,7 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "mocha": "^5.0.0",
-    "nyc": "^11.4.1",
+    "nyc": "^12.0.2",
     "rimraf": "^2.6.2"
   }
 }

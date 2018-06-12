@@ -1,3 +1,9 @@
+/*!
+ * weeknumber
+ * @author commenthol
+ * @license Unlicense
+ */
+
 import assert from 'assert'
 import {dayOfYear, weekNumber, weekNumberSun, weekNumberSat} from '..'
 
@@ -13,6 +19,10 @@ describe('dayOfYear', () => {
   })
   it('should return 366 on Dec 31st in leap year 2016', () => {
     assert.strictEqual(dayOfYear(new Date(2016, 11, 31, 23, 59)), 366)
+  })
+  it('should correct DST changes', function () {
+    assert.equal(dayOfYear(new Date(2018, 2, 25)), 84)
+    assert.equal(dayOfYear(new Date(2018, 2, 26)), 85)
   })
 })
 
@@ -41,6 +51,9 @@ describe('weekNumber', () => {
     [new Date(2018, 0, 1), 1],
     [new Date(2018, 0, 7), 1],
     [new Date(2018, 0, 8), 2],
+
+    [new Date(2018, 2, 25), 12],
+    [new Date(2018, 2, 26), 13], // Mon
 
     [new Date(2018, 11, 30), 52],
     [new Date(2018, 11, 31), 1],
@@ -74,6 +87,9 @@ describe('weekNumberSun', () => {
     [new Date(2017, 11, 31), 53], // Sun
     [new Date(2018, 0, 6), 53],
     [new Date(2018, 0, 7), 1], // Sun
+
+    [new Date(2018, 2, 24), 11],
+    [new Date(2018, 2, 25), 12], // Sun
 
     [new Date(2018, 11, 31), 52],
     [new Date(2019, 0, 5), 52],
@@ -111,6 +127,10 @@ describe('weekNumberSat', () => {
     [new Date(2017, 11, 31), 52],
     [new Date(2018, 0, 5), 52],
     [new Date(2018, 0, 6), 1], // Sat
+
+    [new Date(2018, 2, 23, 23, 59, 59), 11],
+    [new Date(2018, 2, 24), 12],
+    [new Date(2018, 2, 25), 12], // Sun
 
     [new Date(2018, 11, 31), 52],
     [new Date(2019, 0, 4), 52],
