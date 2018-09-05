@@ -117,3 +117,83 @@ export const weekNumberSat = (date = new Date()) => {
   const weekNumber = 1 + Math.floor((saturday - firstSaturday) / WEEK)
   return weekNumber
 }
+
+/**
+ * get year for a given date and week
+ * @private
+ */
+const getYear = (date, week) => {
+  let year = date.getFullYear()
+  if (date.getMonth() === 11 && week === 1) year++
+  if (date.getMonth() === 0 && week > 51) year--
+  return year
+}
+
+/**
+ * ISO 8601 calendar year, week, and day
+ *
+ * New week starts on mondays.
+ * Used by most European countries, most of Asia and Oceania.
+ *
+ * 1st week contains 4-7 days of the new year
+ * @param {Date} [date] - local date - its recommended to use noon to avoid issues for days switching to DST
+ * @return {Object} {year, week, day} where day 1=Monday ... 7=Sunday
+ * @example
+ * weekNumberYear(new Date(2008, 11, 29, 12)) // Monday
+ * //> { year: 2009, week: 1, day: 1 }
+ * weekNumberYear(new Date(2010, 0, 3, 12)) // Sunday
+ * //> { year: 2009, week: 53, day: 7 }
+ */
+export const weekNumberYear = date => {
+  date = new Date(date)
+  const week = weekNumber(date)
+  const year = getYear(date, week)
+  const day = date.getDay() || 7
+  return {year, week, day}
+}
+
+/**
+ * North American and islamic system calendar year, week, and day
+ *
+ * New week starts on sundays.
+ * Used in Canada, United States, India, Japan, Taiwan, Hong Kong, Macau, Israel, South Africa, most of Latin America.
+ *
+ * 1st week contains 1-7 days of the new year
+ * @param {Date} [date] - local date - its recommended to use noon to avoid issues for days switching to DST
+ * @return {Object} {year, week, day} where day 1=Sunday ... 7=Saturday
+ * @example
+ * weekNumberYearSun(new Date(2009, 0, 3, 12)) // Saturday
+ * //> { year: 2008, week: 52, day: 7 }
+ * weekNumberYearSun(new Date(2009, 0, 4, 12)) // Sunday
+ * //> { year: 2009, week: 1, day: 1 }
+ */
+export const weekNumberYearSun = date => {
+  date = new Date(date)
+  const week = weekNumberSun(date)
+  const year = getYear(date, week)
+  const day = (date.getDay() + 1) % 7 || 7
+  return {year, week, day}
+}
+
+/**
+ * Middle Eastern system calendar year, week, and day
+ *
+ * New week starts on saturdays.
+ * Used in most of the Middle East.
+ *
+ * 1st week contains 1-7 days of the new year
+ * @param {Date} [date] - local date - its recommended to use noon to avoid issues for days switching to DST
+ * @return {Object} {year, week, day} where day 1=Saturday ... 7=Friday
+ * @example
+ * weekNumberYearSat(new Date(2009, 0, 2, 12)) // Friday
+ * //> { year: 2008, week: 52, day: 7 }
+ * weekNumberYearSat(new Date(2009, 0, 3, 12)) // Saturday
+ * //> { year: 2009, week: 1, day: 1 }
+ */
+export const weekNumberYearSat = date => {
+  date = new Date(date)
+  const week = weekNumberSat(date)
+  const year = getYear(date, week)
+  const day = (date.getDay() + 2) % 7 || 7
+  return {year, week, day}
+}
