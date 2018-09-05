@@ -149,7 +149,7 @@ export const weekNumberYear = date => {
   const week = weekNumber(date)
   const year = getYear(date, week)
   const day = date.getDay() || 7
-  return {year, week, day}
+  return { year, week, day }
 }
 
 /**
@@ -172,7 +172,7 @@ export const weekNumberYearSun = date => {
   const week = weekNumberSun(date)
   const year = getYear(date, week)
   const day = (date.getDay() + 1) % 7 || 7
-  return {year, week, day}
+  return { year, week, day }
 }
 
 /**
@@ -195,5 +195,5 @@ export const weekNumberYearSat = date => {
   const week = weekNumberSat(date)
   const year = getYear(date, week)
   const day = (date.getDay() + 2) % 7 || 7
-  return {year, week, day}
+  return { year, week, day }
 }
