@@ -4,12 +4,18 @@
  * @license Unlicense
  */
 
+const MINUTE = 60000
 const DAY = 86400000
 const WEEK = 604800000 // = 7 * 24 * 60 * 60 * 1000 = 7 days in ms
 
 /**
+ * Get the difference in milliseconds between the timezone offsets of 2 dates
+ */
+const tzDiff = (first, second) => (first.getTimezoneOffset() - second.getTimezoneOffset()) * MINUTE
+
+/**
  * Get day of year in Gregorian year
- * @param {Date} [date] - local date - its recommended to use noon to avoid issues for days switching to DST
+ * @param {Date} [date] - local date
  * @return {Number} number of day in year (1 ... 366)
  * @example
  * dayOfYear(new Date(2017, 11, 31, 12))
@@ -20,8 +26,7 @@ const WEEK = 604800000 // = 7 * 24 * 60 * 60 * 1000 = 7 days in ms
 export const dayOfYear = (date = new Date()) => {
   const jan1st = new Date(date.getFullYear(), 0, 1)
   const _date = new Date(date)
-  if (_date.getHours() < 3) _date.setHours(3) // avoid problems with DST changes
-  return Math.floor(1 + (_date - jan1st) / DAY) // days 1 ... 366
+  return Math.floor(1 + (_date - jan1st + tzDiff(jan1st, _date)) / DAY) // days 1 ... 366
 }
 
 /**
@@ -31,7 +36,7 @@ export const dayOfYear = (date = new Date()) => {
  * Used by most European countries, most of Asia and Oceania.
  *
  * 1st week contains 4-7 days of the new year
- * @param {Date} [date] - local date - its recommended to use noon to avoid issues for days switching to DST
+ * @param {Date} [date] - local date
  * @return {Number} week number in ISO 8601 format
  * @example
  * weekNumber(new Date(2016, 0, 3, 12)) // Sun
@@ -45,14 +50,13 @@ export const weekNumber = (date = new Date()) => {
   // get thursday of present week
   const thursday = new Date(date)
   thursday.setDate(date.getDate() - day + 3)
-  if (thursday.getHours() < 3) thursday.setHours(3) // avoid problems with DST changes
   // set 1st january first
   const firstThursday = new Date(thursday.getFullYear(), 0, 1)
   // if Jan 1st is not a thursday...
   if (firstThursday.getDay() !== 4) {
     firstThursday.setMonth(0, 1 + (11 /* 4 + 7 */ - firstThursday.getDay()) % 7)
   }
-  const weekNumber = 1 + Math.floor((thursday - firstThursday) / WEEK)
+  const weekNumber = 1 + Math.floor((thursday - firstThursday + tzDiff(firstThursday, thursday)) / WEEK)
   return weekNumber
 }
 
@@ -63,7 +67,7 @@ export const weekNumber = (date = new Date()) => {
  * Used in Canada, United States, India, Japan, Taiwan, Hong Kong, Macau, Israel, South Africa, most of Latin America.
  *
  * 1st week contains 1-7 days of the new year
- * @param {Date} [date] - local date - its recommended to use noon to avoid issues for days switching to DST
+ * @param {Date} [date] - local date
  * @return {Number} week number
  * @example
  * weekNumberSun(new Date(2016, 0, 2, 12)) // Sat
@@ -75,14 +79,13 @@ export const weekNumberSun = (date = new Date()) => {
   // get sunday of present week
   const sunday = new Date(date)
   sunday.setDate(date.getDate() - date.getDay())
-  if (sunday.getHours() < 3) sunday.setHours(3) // avoid problems with DST changes
   // set 1st january first
   const firstSunday = new Date(sunday.getFullYear(), 0, 1)
   // if Jan 1st is not a sunday...
   if (firstSunday.getDay() !== 0) {
     firstSunday.setMonth(0, 1 + (7 - firstSunday.getDay()) % 7)
   }
-  const weekNumber = 1 + Math.floor((sunday - firstSunday) / WEEK)
+  const weekNumber = 1 + Math.floor((sunday - firstSunday + tzDiff(firstSunday, sunday)) / WEEK)
   return weekNumber
 }
 
@@ -93,7 +96,7 @@ export const weekNumberSun = (date = new Date()) => {
  * Used in most of the Middle East.
  *
  * 1st week contains 1-7 days of the new year
- * @param {Date} [date] - local date - its recommended to use noon to avoid issues for days switching to DST
+ * @param {Date} [date] - local date
  * @return {Number} week number
  * @example
  * weekNumberSat(new Date(2016, 0, 1, 12)) // Fri
@@ -107,14 +110,13 @@ export const weekNumberSat = (date = new Date()) => {
   // get saturday of present week
   const saturday = new Date(date)
   saturday.setDate(date.getDate() - day)
-  if (saturday.getHours() < 3) saturday.setHours(3) // avoid problems with DST changes
   // set 1st january first
   const firstSaturday = new Date(saturday.getFullYear(), 0, 1)
   // if Jan 1st is not a saturday...
   if (firstSaturday.getDay() !== 6) {
     firstSaturday.setMonth(0, 1 + (13 - firstSaturday.getDay()) % 7)
   }
-  const weekNumber = 1 + Math.floor((saturday - firstSaturday) / WEEK)
+  const weekNumber = 1 + Math.floor((saturday - firstSaturday + tzDiff(firstSaturday, saturday)) / WEEK)
   return weekNumber
 }
 
@@ -136,7 +138,7 @@ const getYear = (date, week) => {
  * Used by most European countries, most of Asia and Oceania.
  *
  * 1st week contains 4-7 days of the new year
- * @param {Date} [date] - local date - its recommended to use noon to avoid issues for days switching to DST
+ * @param {Date} [date] - local date
  * @return {Object} {year, week, day} where day 1=Monday ... 7=Sunday
  * @example
  * weekNumberYear(new Date(2008, 11, 29, 12)) // Monday
@@ -159,7 +161,7 @@ export const weekNumberYear = date => {
  * Used in Canada, United States, India, Japan, Taiwan, Hong Kong, Macau, Israel, South Africa, most of Latin America.
  *
  * 1st week contains 1-7 days of the new year
- * @param {Date} [date] - local date - its recommended to use noon to avoid issues for days switching to DST
+ * @param {Date} [date] - local date
  * @return {Object} {year, week, day} where day 1=Sunday ... 7=Saturday
  * @example
  * weekNumberYearSun(new Date(2009, 0, 3, 12)) // Saturday
@@ -182,7 +184,7 @@ export const weekNumberYearSun = date => {
  * Used in most of the Middle East.
  *
  * 1st week contains 1-7 days of the new year
- * @param {Date} [date] - local date - its recommended to use noon to avoid issues for days switching to DST
+ * @param {Date} [date] - local date
  * @return {Object} {year, week, day} where day 1=Saturday ... 7=Friday
  * @example
  * weekNumberYearSat(new Date(2009, 0, 2, 12)) // Friday
