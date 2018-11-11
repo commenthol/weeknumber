@@ -27,7 +27,7 @@ Get day of year in Gregorian year
 
 | parameter | type | description |
 | --------- | ---- | ----------- |
-| `[date]`  | Date | _optional:_ local date - its recommended to use noon to avoid issues for days switching to DST |
+| `[date]`  | Date | _optional:_ local date |
 
 **Example**
 
@@ -53,7 +53,7 @@ Used by most European countries, most of Asia and Oceania.
 
 | parameter | type | description |
 | --------- | ---- | ----------- |
-| `[date]`  | Date | _optional:_ local date - its recommended to use noon to avoid issues for days switching to DST |
+| `[date]`  | Date | _optional:_ local date |
 
 **Example**
 
@@ -79,7 +79,7 @@ Used in Canada, United States, India, Japan, Taiwan, Hong Kong, Macau, Israel, S
 
 | parameter | type | description |
 | --------- | ---- | ----------- |
-| `[date]`  | Date | _optional:_ local date - its recommended to use noon to avoid issues for days switching to DST |
+| `[date]`  | Date | _optional:_ local date |
 
 **Example**
 
@@ -105,7 +105,7 @@ Used in most of the Middle East.
 
 | parameter | type | description |
 | --------- | ---- | ----------- |
-| `[date]`  | Date | _optional:_ local date - its recommended to use noon to avoid issues for days switching to DST |
+| `[date]`  | Date | _optional:_ local date |
 
 **Example**
 
@@ -131,7 +131,7 @@ Used by most European countries, most of Asia and Oceania.
 
 | parameter | type | description |
 | --------- | ---- | ----------- |
-| `[date]`  | Date | _optional:_ local date - its recommended to use noon to avoid issues for days switching to DST |
+| `[date]`  | Date | _optional:_ local date |
 
 **Example**
 
@@ -158,7 +158,7 @@ Used in Canada, United States, India, Japan, Taiwan, Hong Kong, Macau, Israel, S
 
 | parameter | type | description |
 | --------- | ---- | ----------- |
-| `[date]`  | Date | _optional:_ local date - its recommended to use noon to avoid issues for days switching to DST |
+| `[date]`  | Date | _optional:_ local date |
 
 **Example**
 
@@ -185,7 +185,7 @@ Used in most of the Middle East.
 
 | parameter | type | description |
 | --------- | ---- | ----------- |
-| `[date]`  | Date | _optional:_ local date - its recommended to use noon to avoid issues for days switching to DST |
+| `[date]`  | Date | _optional:_ local date |
 
 **Example**
 
