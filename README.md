@@ -1,7 +1,7 @@
 # weeknumber
 
 [![NPM version](https://badge.fury.io/js/weeknumber.svg)](https://www.npmjs.com/package/weeknumber/)
-[![build status](https://secure.travis-ci.org/commenthol/weeknumber.svg)](http://travis-ci.org/commenthol/weeknumber)
+[![build status](https://secure.travis-ci.org/commenthol/weeknumber.svg?branch=master)](http://travis-ci.org/commenthol/weeknumber)
 
 > week number systems for Gregorian year according to [ISO-8601][] or starting on sundays, saturdays
 
