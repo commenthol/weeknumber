@@ -12,6 +12,10 @@ import {
   weekNumberSat,
   weekNumberYear,
   weekNumberYearSun,
+  weekNumberYearSat,
+  weeksPerYear,
+  weeksPerYearSun,
+  weeksPerYearSat
 } from 'weeknumber'
 
 describe('dayOfYear', () => {
@@ -190,6 +194,60 @@ describe('weekNumberYearSat', () => {
     it(`${dateToString(date)} should return ${JSON.stringify(exp)}`, () => {
       const wn = weekNumberYearSat(date)
       assert.deepStrictEqual(wn, exp)
+    })
+  })
+})
+
+describe('weeksPerYear', () => {
+  const fixtures = [
+    [1900, 52],
+    [1950, 52],
+    [2000, 52],
+    [2004, 53],
+    [2015, 53],
+    [2020, 53],
+    [2021, 52]
+  ]
+
+  fixtures.forEach(([year, weeks]) => {
+    it(`${year} has ${weeks} weeks`, () => {
+      assert.strictEqual(weeksPerYear(year), weeks)
+    })
+  })
+})
+
+describe('weeksPerYearSun', () => {
+  const fixtures = [
+    [1900, 52],
+    [1950, 53],
+    [2000, 53],
+    [2004, 52],
+    [2015, 52],
+    [2020, 52],
+    [2021, 52]
+  ]
+
+  fixtures.forEach(([year, weeks]) => {
+    it(`${year} has ${weeks} weeks`, () => {
+      assert.strictEqual(weeksPerYearSun(year), weeks)
+    })
+  })
+})
+
+describe('weeksPerYearSat', () => {
+  const fixtures = [
+    [1900, 52],
+    [1950, 52],
+    [2000, 53],
+    [2004, 52],
+    [2015, 52],
+    [2020, 52],
+    [2021, 52]
+  ]
+
+  fixtures.forEach(([year, weeks]) => {
+    it(`${year} has ${weeks} weeks`, () => {
+      assert.strictEqual(weeksPerYearSat(year), weeks)
     })
   })
 })

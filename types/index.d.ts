@@ -6,3 +6,5 @@ export function weekNumberYear(date?: Date): any;
 export function weekNumberYearSun(date?: Date): any;
 export function weekNumberYearSat(date?: Date): any;
 export function weeksPerYear(year: number): number;
+export function weeksPerYearSun(year: number): number;
+export function weeksPerYearSat(year: number): number;

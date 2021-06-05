@@ -199,3 +199,40 @@ export const weekNumberYearSat = date => {
   const day = (date.getDay() + 2) % 7 || 7
   return { year, week, day }
 }
+
+/**
+ * ISO 8601 calendar weeks in a given year
+ *
+ * New week starts on mondays.
+ * Used by most European countries, most of Asia and Oceania.
+ *
+ * @param {number} year
+ * @returns {number} weeks in year
+ */
+export const weeksPerYear = year => {
+  let weeks = weekNumber(new Date(year, 11, 31, 12))
+  if (weeks === 1) { weeks = weekNumber(new Date(year, 11, 31 - 3, 12)) }
+  return weeks
+}
+
+/**
+ * North American and islamic system calendar weeks in a given year
+ *
+ * New week starts on sundays.
+ * Used in Canada, United States, India, Japan, Taiwan, Hong Kong, Macau, Israel, South Africa, most of Latin America.
+ *
+ * @param {number} year
+ * @returns {number} weeks in year
+ */
+export const weeksPerYearSun = year => weekNumberSun(new Date(year, 11, 31, 12))
+
+/**
+ * Middle Eastern system calendar weeks in a given year
+ *
+ * New week starts on saturdays.
+ * Used in most of the Middle East.
+ *
+ * @param {number} year
+ * @returns {number} weeks in year
+ */
+export const weeksPerYearSat = year => weekNumberSat(new Date(year, 11, 31, 12))
