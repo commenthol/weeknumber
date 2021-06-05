@@ -12,8 +12,7 @@ import {
   weekNumberSat,
   weekNumberYear,
   weekNumberYearSun,
-  weekNumberYearSat
-} from '..'
+} from 'weeknumber'
 
 describe('dayOfYear', () => {
   it('should return a number', () => {

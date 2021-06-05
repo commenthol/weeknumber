@@ -22,41 +22,55 @@
   },
   "license": "Unlicense",
   "author": "Commenthol <commenthol@gmail.com>",
-  "main": "lib",
-  "module": "src",
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./lib/index.cjs",
+      "import": "./src/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./lib/index.cjs",
+  "module": "./src/index.js",
+  "types": "./src/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
   "scripts": {
-    "all": "npm run lint && npm run build && npm test && npm run test:tz",
-    "build": "babel -d lib src",
-    "clean": "rimraf lib node_modules coverage .nyc_output",
+    "all": "npm run clean && npm run lint && npm run build && npm test && npm run test:tz",
+    "build": "rollup -c",
+    "clean": "rimraf lib coverage",
     "coverage": "nyc -r html -r text npm test",
-    "lint": "eslint '**/*.js'",
-    "prepare": "rimraf lib && npm run all",
-    "test": "mocha",
-    "test:tz": "TZ=Europe/Brussels mocha"
+    "lint": "eslint --fix \"**/*.js\"",
+    "prepublishOnly": "npm run all",
+    "test": "c8 mocha",
+    "test:tz": "TZ=Europe/Brussels mocha",
+    "types": "tsc src/*.js --declaration --allowJs --emitDeclarationOnly --outDir types"
   },
   "babel": {
     "presets": [
       "@babel/preset-env"
     ]
   },
-  "dependencies": {},
+  "mocha": {
+    "exit": true
+  },
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.6.4",
-    "@babel/preset-env": "^7.6.3",
-    "@babel/register": "^7.6.2",
-    "eslint": "^6.6.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "mocha": "^6.2.2",
-    "nyc": "^14.1.1",
-    "rimraf": "^3.0.0"
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/register": "^7.13.16",
+    "c8": "^7.7.2",
+    "eslint": "^7.28.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "mocha": "^8.4.0",
+    "nyc": "^15.1.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.50.6",
+    "typescript": "^4.3.2"
   }
 }
