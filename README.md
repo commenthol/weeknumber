@@ -6,13 +6,16 @@
 > week number systems for Gregorian year according to [ISO-8601][] or starting on sundays, saturdays
 
 - [API](#api)
-	- [dayOfYear](#dayofyear)
-	- [weekNumber](#weeknumber-1) - ISO 8601 week numbers
-	- [weekNumberSun](#weeknumbersun) - week starting on Sundays
-	- [weekNumberSat](#weeknumbersat) - week starting on Saturdays
-	- [weekNumberYear](#weeknumberyear) - ISO 8601 calendar year, week, and day
-	- [weekNumberYearSun](#weeknumberyearsun) - calendar year, week, and day starting on Sundays
-	- [weekNumberYearSat](#weeknumberyearsat) - calendar year, week, and day starting on Saturdays
+  - [dayOfYear](#dayofyear)
+  - [weekNumber](#weeknumber-1) - ISO 8601 week numbers
+  - [weekNumberSun](#weeknumbersun) - week starting on Sundays
+  - [weekNumberSat](#weeknumbersat) - week starting on Saturdays
+  - [weekNumberYear](#weeknumberyear) - ISO 8601 calendar year, week, and day
+  - [weekNumberYearSun](#weeknumberyearsun) - calendar year, week, and day starting on Sundays
+  - [weekNumberYearSat](#weeknumberyearsat) - calendar year, week, and day starting on Saturdays
+  - [weeksPerYear](#weeksperyear) - ISO 8601 calendar weeks in a given year
+  - [weeksPerYearSun](#weeksperyearsun)
+  - [weeksPerYearSat](#weeksperyearsat)
 - [Installation](#installation)
 - [Tests](#tests)
 - [License](#license)
@@ -25,13 +28,13 @@ Get day of year in Gregorian year
 
 **Parameters**
 
-| parameter | type | description |
-| --------- | ---- | ----------- |
-| `[date]`  | Date | _optional:_ local date |
+- `date`?: Date; _optional:_ local date
 
 **Example**
 
 ```js
+import { dayOfYear } from 'weeknumber'
+
 dayOfYear(new Date(2017, 11, 31, 12))
 //> 365
 dayOfYear(new Date(2018, 0, 1, 12))
@@ -51,13 +54,13 @@ Used by most European countries, most of Asia and Oceania.
 
 **Parameters**
 
-| parameter | type | description |
-| --------- | ---- | ----------- |
-| `[date]`  | Date | _optional:_ local date |
+- `date`?: Date; _optional:_ local date
 
 **Example**
 
 ```js
+import { weekNumber } from 'weeknumber'
+
 weekNumber(new Date(2016, 0, 3, 12)) // Sun
 //> 53
 weekNumber(new Date(2016, 0, 4, 12)) // Mon
@@ -77,9 +80,7 @@ Used in Canada, United States, India, Japan, Taiwan, Hong Kong, Macau, Israel, S
 
 **Parameters**
 
-| parameter | type | description |
-| --------- | ---- | ----------- |
-| `[date]`  | Date | _optional:_ local date |
+- `date`?: Date; _optional:_ local date
 
 **Example**
 
@@ -103,9 +104,7 @@ Used in most of the Middle East.
 
 **Parameters**
 
-| parameter | type | description |
-| --------- | ---- | ----------- |
-| `[date]`  | Date | _optional:_ local date |
+- `date`?: Date; _optional:_ local date
 
 **Example**
 
@@ -120,7 +119,7 @@ weekNumberSat(new Date(2016, 0, 2, 12)) // Sat
 
 ### weekNumberYear
 
-[ISO-8601] calendar year, week, and day
+[ISO-8601][] calendar year, week, and day
 
 New week starts on Mondays.
 Used by most European countries, most of Asia and Oceania.
@@ -129,9 +128,7 @@ Used by most European countries, most of Asia and Oceania.
 
 **Parameters**
 
-| parameter | type | description |
-| --------- | ---- | ----------- |
-| `[date]`  | Date | _optional:_ local date |
+- `date`?: Date; _optional:_ local date
 
 **Example**
 
@@ -156,9 +153,7 @@ Used in Canada, United States, India, Japan, Taiwan, Hong Kong, Macau, Israel, S
 
 **Parameters**
 
-| parameter | type | description |
-| --------- | ---- | ----------- |
-| `[date]`  | Date | _optional:_ local date |
+- `date`?: Date; _optional:_ local date
 
 **Example**
 
@@ -171,7 +166,6 @@ weekNumberYearSun(new Date(2009, 0, 4, 12)) // Sunday
 
 **Returns** `Object`, `{year, week, day}` where day 1=Sunday ... 7=Saturday
 
-
 ### weekNumberYearSat
 
 Middle Eastern system calendar year, week, and day
@@ -183,9 +177,7 @@ Used in most of the Middle East.
 
 **Parameters**
 
-| parameter | type | description |
-| --------- | ---- | ----------- |
-| `[date]`  | Date | _optional:_ local date |
+- `date`?: Date; _optional:_ local date
 
 **Example**
 
@@ -198,6 +190,45 @@ weekNumberYearSat(new Date(2009, 0, 3, 12)) // Saturday
 
 **Returns** `Object`, `{year, week, day}` where day 1=Saturday ... 7=Friday
 
+### weeksPerYear
+
+ISO 8601 calendar weeks in a given year
+
+New week starts on mondays.
+Used by most European countries, most of Asia and Oceania.
+
+**Parameters**
+
+* `year`: number;
+
+Returns **number** weeks in year
+
+### weeksPerYearSun
+
+North American and islamic system calendar weeks in a given year
+
+New week starts on sundays.
+Used in Canada, United States, India, Japan, Taiwan, Hong Kong, Macau, Israel, South Africa, most of Latin America.
+
+**Parameters**
+
+* `year`: number;
+
+Returns **number** weeks in year
+
+### weeksPerYearSat
+
+Middle Eastern system calendar weeks in a given year
+
+New week starts on saturdays.
+Used in most of the Middle East.
+
+**Parameters**
+
+* `year`: number;
+
+Returns **number** weeks in year
+
 ## Installation
 
 Requires [nodejs](http://nodejs.org/).
@@ -209,8 +240,7 @@ $ npm install weeknumber
 ## Tests
 
 ```sh
-$ npm test
-$ npm run coverage
+npm test
 ```
 
 ## License

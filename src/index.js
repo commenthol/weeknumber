@@ -16,7 +16,7 @@ const tzDiff = (first, second) => (first.getTimezoneOffset() - second.getTimezon
 /**
  * Get day of year in Gregorian year
  * @param {Date} [date] - local date
- * @return {Number} number of day in year (1 ... 366)
+ * @return {number} number of day in year (1 ... 366)
  * @example
  * dayOfYear(new Date(2017, 11, 31, 12))
  * //> 365
@@ -37,7 +37,7 @@ export const dayOfYear = (date = new Date()) => {
  *
  * 1st week contains 4-7 days of the new year
  * @param {Date} [date] - local date
- * @return {Number} week number in ISO 8601 format
+ * @return {number} week number in ISO 8601 format
  * @example
  * weekNumber(new Date(2016, 0, 3, 12)) // Sun
  * //> 53
@@ -68,7 +68,7 @@ export const weekNumber = (date = new Date()) => {
  *
  * 1st week contains 1-7 days of the new year
  * @param {Date} [date] - local date
- * @return {Number} week number
+ * @return {number} week number
  * @example
  * weekNumberSun(new Date(2016, 0, 2, 12)) // Sat
  * //> 52
@@ -97,7 +97,7 @@ export const weekNumberSun = (date = new Date()) => {
  *
  * 1st week contains 1-7 days of the new year
  * @param {Date} [date] - local date
- * @return {Number} week number
+ * @return {number} week number
  * @example
  * weekNumberSat(new Date(2016, 0, 1, 12)) // Fri
  * //> 52
@@ -211,7 +211,9 @@ export const weekNumberYearSat = date => {
  */
 export const weeksPerYear = year => {
   let weeks = weekNumber(new Date(year, 11, 31, 12))
-  if (weeks === 1) { weeks = weekNumber(new Date(year, 11, 31 - 3, 12)) }
+  if (weeks === 1) {
+    weeks = weekNumber(new Date(year, 11, 31 - 3, 12))
+  }
   return weeks
 }
 
