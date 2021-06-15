@@ -32,7 +32,7 @@
   },
   "main": "./lib/index.cjs",
   "module": "./src/index.js",
-  "types": "./src/index.d.ts",
+  "types": "./types/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
